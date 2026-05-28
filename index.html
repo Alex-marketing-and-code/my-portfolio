@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexandre Hébert - Digital Marketing Professional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(148, 163, 184, 0.5);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(148, 163, 184, 0.8);
+        }
+
+        /* Background gradient animation */
+        .background-gradient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .gradient-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            mix-blend-mode: multiply;
+            opacity: 0.2;
+        }
+
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: #3b82f6;
+            top: 0;
+            left: 25%;
+            animation: pulse 5s ease-in-out infinite;
+        }
+
+        .blob-2 {
+            width: 400px;
+            height: 400px;
+            background: #a855f7;
+            bottom: 0;
+            right: 25%;
+            animation: pulse 5s ease-in-out infinite 2s;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 50;
+            transition: all 0.3s ease;
+            padding: 1rem 2rem;
+        }
+
+        nav.scrolled {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(51, 65, 85, 1);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #60a5fa, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+        }
+
+        .nav-link {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: #ffffff;
+        }
+
+        /* Hero Section */
+        .section {
+            position: relative;
+            z-index: 10;
+            padding: 5rem 1.5rem;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 5rem;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 56rem;
+            animation: fade-in 0.8s ease-out;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #93c5fd;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #a78bfa, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #3b82f6, #a855f7);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            border: 1px solid #475569;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            border-color: #94a3b8;
+        }
+
+        .chevron {
+            animation: bounce 2s infinite;
+            display: inline-block;
+        }
+
+        /* Section Headings */
+        .section h2 {
+            font-size: 2.25rem;
+            margin-bottom: 3rem;
+        }
+
+        .container {
+            max-width: 56rem;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .about-text p {
+            font-size: 1.125rem;
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .info-box {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid #334155;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #334155;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .info-label {
+            color: #94a3b8;
+            font-size: 0.875rem;
+        }
+
+        .info-value {
+            font-weight: 600;
+        }
+
+        /* Work Section */
+        .projects-list {
+            space-y: 2rem;
+        }
+
+        .project-card {
+            background: rgba(30, 41, 59, 0.3);
+            border: 1px solid #334155;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            border-color: rgba(59, 130, 246, 0.5);
+            background: rgba(30, 41, 59, 0.5);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .project-subtitle {
+            color: #94a3b8;
+            font-size: 0.875rem;
+        }
+
+        .project-description {
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            padding: 0.375rem 0.75rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 9999px;
+            color: #93c5fd;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #334155;
+        }
+
+        .metric {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: #cbd5e1;
+        }
+
+        .metric-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: linear-gradient(to right, #60a5fa, #a855f7);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .skill-group {
+            background: rgba(30, 41, 59, 0.3);
+            border: 1px solid #334155;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: border-color 0.3s;
+        }
+
+        .skill-group:hover {
+            border-color: #475569;
+        }
+
+        .skill-category {
+            font-weight: 600;
+            color: #60a5fa;
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+        }
+
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-item {
+            padding: 0.5rem 0.75rem;
+            background: rgba(51, 65, 85, 0.5);
+            border: 1px solid #475569;
+            border-radius: 0.5rem;
+            color: #cbd5e1;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .skill-item:hover {
+            background: rgba(71, 85, 105, 1);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+        }
+
+        .contact-title {
+            font-size: 2.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-subtitle {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            margin-bottom: 3rem;
+            max-width: 42rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-info {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid #334155;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            max-width: 36rem;
+            margin: 0 auto;
+        }
+
+        .contact-label {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-email {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-phone {
+            color: #cbd5e1;
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            z-index: 10;
+            border-top: 1px solid #334155;
+            padding: 2rem 1.5rem;
+            margin-top: 5rem;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-text {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-link {
+            color: #64748b;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Gradient -->
+    <div class="background-gradient">
+        <div class="gradient-blob blob-1"></div>
+        <div class="gradient-blob blob-2"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">AH</div>
+            <div class="nav-menu">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#work" class="nav-link">Work</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="section hero">
+        <div class="hero-content">
+            <div class="badge">Digital Marketing Professional</div>
+            
+            <h1>Transform data into <span class="gradient-text">growth stories</span></h1>
+            
+            <p>I combine strategic thinking with creative execution to drive digital transformation. Marketing strategist, product thinker, and growth enthusiast based in Île-de-France.</p>
+
+            <div class="button-group">
+                <a href="#work" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Let's Talk</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2>About Me</h2>
+            
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>I'm Alexandre Hébert, a digital marketing professional passionate about creating meaningful customer experiences through data-driven strategies.</p>
+                    
+                    <p>Recently Graduated from the Master in Digital Marketing from IESEG in Paris, I've had the privilege of working across diverse sectors from enterprise software at Dassault Systèmes to innovative startups like ZEcamping and Miior.</p>
+
+                    <p>My superpower? Bridging the gap between data analytics and creative storytelling to solve real business problems. I believe the best marketing is invisible,it works so well that customers don't realize they've been convinced.</p>
+                </div>
+
+                <div class="info-box">
+                    <h3 style="color: #60a5fa; margin-bottom: 1.5rem;">Quick Facts</h3>
+                    
+                    <div class="info-item">
+                        <span class="info-label">Currently</span>
+                        <span class="info-value">Master's Graduate</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="info-label">Based</span>
+                        <span class="info-value">Île-de-France, FR</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="info-label">Expertise</span>
+                        <span class="info-value">Digital GTM</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="info-label">Languages</span>
+                        <span class="info-value">FR • EN • ES</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section id="work" class="section">
+        <div class="container">
+            <h2>Featured Work</h2>
+
+            <div class="projects-list">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div>
+                            <h3 class="project-title">Dassault Systèmes</h3>
+                            <p class="project-subtitle">Digital Adoption Optimization</p>
+                        </div>
+                    </div>
+                    <p class="project-description">Analyzed user behavior via Google Analytics, identified engagement bottleneck, and implemented solution delivering +25% performance boost.</p>
+                    <div class="tags">
+                        <span class="tag">Analytics</span>
+                        <span class="tag">Product</span>
+                        <span class="tag">User Behavior</span>
+                    </div>
+                    <div class="metrics">
+                        <div class="metric"><span class="metric-dot"></span>+25% engagement</div>
+                        <div class="metric"><span class="metric-dot"></span>Google Analytics</div>
+                        <div class="metric"><span class="metric-dot"></span>UX Optimization</div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div>
+                            <h3 class="project-title">ZEcamping</h3>
+                            <p class="project-subtitle">Multi-Channel Growth Strategy</p>
+                        </div>
+                    </div>
+                    <p class="project-description">Designed and executed multi-channel marketing automation strategy using CRM SPLIO, multiplying direct sales by 5.</p>
+                    <div class="tags">
+                        <span class="tag">Marketing Automation</span>
+                        <span class="tag">E-commerce</span>
+                        <span class="tag">Growth</span>
+                    </div>
+                    <div class="metrics">
+                        <div class="metric"><span class="metric-dot"></span>x5 direct sales </div>
+                        <div class="metric"><span class="metric-dot"></span>Manage email campaigns</div>
+                        <div class="metric"><span class="metric-dot"></span>OTA coordination</div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div>
+                            <h3 class="project-title">Miior</h3>
+                            <p class="project-subtitle">E-Commerce Market Adaptation</p>
+                        </div>
+                    </div>
+                    <p class="project-description">Audited existing business model and strategically developed e-commerce platform with localized GTM approach for Polish market.</p>
+                    <div class="tags">
+                        <span class="tag">E-commerce</span>
+                        <span class="tag">Strategic Planning</span>
+                        <span class="tag">Markets</span>
+                    </div>
+                    <div class="metrics">
+                        <div class="metric"><span class="metric-dot"></span>Full platform build</div>
+                        <div class="metric"><span class="metric-dot"></span>Market research</div>
+                        <div class="metric"><span class="metric-dot"></span>Local GTM</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2>Skills & Expertise</h2>
+
+            <div class="skills-grid">
+                <div class="skill-group">
+                    <div class="skill-category">Marketing & Strategy</div>
+                    <div class="skill-items">
+                        <div class="skill-item">Marketing Digitale</div>
+                        <div class="skill-item">Go-To-Market</div>
+                        <div class="skill-item">Product Management</div>
+                        <div class="skill-item">Growth Strategies</div>
+                        <div class="skill-item">Market Analysis</div>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-category">Data & Analytics</div>
+                    <div class="skill-items">
+                        <div class="skill-item">Google Analytics</div>
+                        <div class="skill-item">Looker Studio</div>
+                        <div class="skill-item">Excel Advanced</div>
+                        <div class="skill-item">Netvibes</div>
+                        <div class="skill-item">Data Analysis</div>
+                        <div class="skill-item">KPI Measurement</div>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-category">Tools & Technology</div>
+                    <div class="skill-items">
+                        <div class="skill-item">CMS: Drupal, Shopify</div>
+                        <div class="skill-item">CRM: SPLIO</div>
+                        <div class="skill-item">HTML/CSS</div>
+                        <div class="skill-item">Python</div>
+                        <div class="skill-item">RPA: UIPath</div>
+                        <div class="skill-item">Microsoft Azure</div>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-category">Core Competencies</div>
+                    <div class="skill-items">
+                        <div class="skill-item">Digital Strategy</div>
+                        <div class="skill-item">Customer Experience</div>
+                        <div class="skill-item">Marketing Automation</div>
+                        <div class="skill-item">Data-Driven Decision</div>
+                        <div class="skill-item">Cross-functional Leadership</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container contact-content">
+            <h2 class="contact-title">Let's Create Together</h2>
+            <p class="contact-subtitle">Whether you're looking for a marketing strategist, product thinker, or growth partner, I'd love to explore how we can work together.</p>
+
+            <div class="contact-buttons">
+                <a href="mailto:alexandre.hebert78@gmail.com" class="btn btn-primary">📧 Email Me</a>
+                <a href="https://www.linkedin.com/in/alexandreh%C3%A9bert-4329751b7/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">LinkedIn</a>
+            </div>
+
+            <div class="contact-info">
+                <p class="contact-label">Quick Contact Info</p>
+                <p class="contact-email">+33 6 62 24 41 73</p>
+                <p class="contact-phone">alexandre.hebert78@gmail.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <p class="footer-text">© 2026 Alexandre Hébert. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
